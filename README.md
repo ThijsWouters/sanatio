@@ -38,7 +38,7 @@ class Person
 
   attr_reader :name
 
-  ensure(:name).is { !nil? }.reason = :not_nil
+  ensure_that(:name).is { !nil? }.reason = :not_nil
 end
 
 person = Person.new(nil)
@@ -60,7 +60,7 @@ class Person
 
   attr_reader :name
 
-  ensure(self).is { !name.nil? }.reason = :name_not_nil
+  ensure_that(self).is { !name.nil? }.reason = :name_not_nil
 end
 
 person = Person.new(nil)
