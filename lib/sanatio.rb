@@ -19,8 +19,8 @@ module Sanatio
     end
 
     def errors
-      self.class.validations.map do |validation|
-        Error.new(validation.field, validation.reason)
+      self.class.validations.reject do |validation|
+        validation.valid?(self)
       end
     end
   end
@@ -29,8 +29,6 @@ module Sanatio
     other.include(InstanceMethods)
     other.extend(ClassMethods)
   end
-
-  Error = Struct.new(:field, :reason)
 
   class Validation
     attr_reader :field
@@ -43,6 +41,10 @@ module Sanatio
     def is(&validation_block)
       @validation_block = validation_block
       self
+    end
+
+    def valid?(object)
+      object.send(@field).instance_eval &@validation_block
     end
   end
 end
