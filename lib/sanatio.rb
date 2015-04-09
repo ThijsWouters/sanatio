@@ -21,13 +21,23 @@ module Sanatio
     def errors
       self.class.validations.reject do |validation|
         validation.valid?(self)
-      end
+      end.map(&Error.method(:new))
     end
   end
 
   def self.included(other)
     other.include(InstanceMethods)
     other.extend(ClassMethods)
+  end
+
+  class Error
+    extend Forwardable
+
+    def_delegators :@validation, :field, :reason
+
+    def initialize(validation)
+      @validation = validation
+    end
   end
 
   class Validation
