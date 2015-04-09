@@ -1,19 +1,12 @@
 require "sanatio/version"
 require "sanatio/error"
-require "sanatio/field_validator"
-require "sanatio/class_validator"
+require "sanatio/validator_factory"
 
 module Sanatio
   module ClassMethods
     def ensure_that(target)
-      if target.instance_of? Class
-        ClassValidator.new.tap do |validator|
-          validators << validator
-        end
-      else
-        FieldValidator.new(target).tap do |validator|
-          validators << validator
-        end
+      Sanatio::ValidatorFactory.create(target).tap do |validator|
+        validators << validator
       end
     end
 
