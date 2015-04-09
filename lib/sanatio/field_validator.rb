@@ -1,4 +1,4 @@
-class Sanatio::Validator
+class Sanatio::FieldValidator
   attr_reader :field
   attr_accessor :reason
 

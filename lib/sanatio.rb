@@ -1,6 +1,6 @@
 require "sanatio/version"
 require "sanatio/error"
-require "sanatio/valdator"
+require "sanatio/field_validator"
 require "sanatio/class_validator"
 
 module Sanatio
@@ -11,7 +11,7 @@ module Sanatio
           validators << validator
         end
       else
-        Validator.new(target).tap do |validator|
+        FieldValidator.new(target).tap do |validator|
           validators << validator
         end
       end
