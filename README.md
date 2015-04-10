@@ -71,6 +71,28 @@ error.reason # :name_not_nil
 person.valid? # false
 ```
 
+### Skipping validations
+
+You can skip validations if they are not needed or if they cannot run.
+
+```ruby
+class Person
+  include Sanatio
+
+  def initialize(name)
+    @name = name
+  end
+
+  attr_reader :name
+
+  # NilClass#empty? does not exist, so the validation will fail when the name is nil.
+  ensure_that(:name).is { !empty? }.skip_if { nil? }.reason = :not_empty
+end
+
+Person.new(nil).valid? # true
+Person.new("").valid? # false
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `bin/console` for an interactive prompt that will allow you to experiment.
