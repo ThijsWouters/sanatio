@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = "sanatio"
   spec.version       = Sanatio::VERSION
   spec.authors       = ["Thijs Wouters"]
-  spec.email         = ["thijsw@tradelec.be"]
+  spec.email         = ["thijs@morewood.be"]
 
   if spec.respond_to?(:metadata)
     spec.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com' to prevent pushes to rubygems.org, or delete to allow pushes to any server."
