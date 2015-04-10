@@ -1,3 +1,5 @@
+require 'sanatio/usage_error'
+
 module Sanatio
   class ClassValidator
     attr_accessor :reason
@@ -6,6 +8,10 @@ module Sanatio
     end
 
     def is(&validation_block)
+      unless block_given?
+        raise UsageError.new("self")
+      end
+
       @validation_block = validation_block
       self
     end

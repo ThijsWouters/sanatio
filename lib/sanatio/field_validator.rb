@@ -1,3 +1,5 @@
+require 'sanatio/usage_error'
+
 module Sanatio
   class FieldValidator
     attr_reader :field
@@ -8,6 +10,10 @@ module Sanatio
     end
 
     def is(&validation_block)
+      unless block_given?
+        raise UsageError.new(":#{field}")
+      end
+
       @validation_block = validation_block
       self
     end
