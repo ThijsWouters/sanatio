@@ -15,10 +15,6 @@ module Sanatio
     end
 
     private
-    def target
-      ":#{field}"
-    end
-
     def evaluate(object, test)
       object.send(@field).instance_eval &test
     end

@@ -10,10 +10,6 @@ module Sanatio
     attr_accessor :reason
 
     private
-    def target
-      "self"
-    end
-
     def evaluate(object, block)
       object.instance_eval(&block)
     end

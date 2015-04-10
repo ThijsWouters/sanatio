@@ -10,7 +10,7 @@ class TestUsageErrors < Minitest::Test
       end
     end
 
-    assert_equal("You need to give a block to #is. The correct usage is:\nensure_that(:field).is { validation_test }", usage_error.message)
+    assert_equal("You need to give a block to #is.", usage_error.message)
   end
 
   def test_no_block_given_with_a_class_validation
@@ -22,6 +22,6 @@ class TestUsageErrors < Minitest::Test
       end
     end
 
-    assert_equal("You need to give a block to #is. The correct usage is:\nensure_that(self).is { validation_test }", usage_error.message)
+    assert_equal("You need to give a block to #is.", usage_error.message)
   end
 end

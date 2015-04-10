@@ -2,7 +2,7 @@ module Sanatio
   module BlockValidator
     def is(&validation_block)
       unless block_given?
-        raise UsageError.new(target)
+        raise UsageError.new
       end
 
       @validation_block = validation_block
