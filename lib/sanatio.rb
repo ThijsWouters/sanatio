@@ -22,6 +22,8 @@ module Sanatio
 
     def errors
       self.class.validators.reject do |validator|
+        validator.skip?(self)
+      end.reject do |validator|
         validator.valid?(self)
       end.map(&Error.method(:new))
     end

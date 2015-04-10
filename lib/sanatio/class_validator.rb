@@ -16,6 +16,10 @@ module Sanatio
       self
     end
 
+    def skip?(_object)
+      false
+    end
+
     def valid?(object)
       object.instance_eval(&@validation_block)
     end

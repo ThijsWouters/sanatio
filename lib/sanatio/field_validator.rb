@@ -7,6 +7,7 @@ module Sanatio
 
     def initialize(field)
       @field = field
+      @skip_test = Proc.new { false }
     end
 
     def is(&validation_block)
@@ -16,6 +17,15 @@ module Sanatio
 
       @validation_block = validation_block
       self
+    end
+
+    def skip_if(&skip_test)
+      @skip_test = skip_test
+      self
+    end
+
+    def skip?(object)
+      object.send(@field).instance_eval &@skip_test
     end
 
     def valid?(object)
