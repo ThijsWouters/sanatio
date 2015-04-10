@@ -5,6 +5,7 @@ module Sanatio
     attr_accessor :reason
 
     def initialize
+      @skip_test = Proc.new { false }
     end
 
     def is(&validation_block)
@@ -16,8 +17,13 @@ module Sanatio
       self
     end
 
-    def skip?(_object)
-      false
+    def skip_if(&skip_test)
+      @skip_test = skip_test
+      self
+    end
+
+    def skip?(object)
+      object.instance_eval(&@skip_test)
     end
 
     def valid?(object)
