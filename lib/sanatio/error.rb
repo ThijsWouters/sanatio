@@ -1,3 +1,5 @@
+require 'forwardable'
+
 module Sanatio
   class Error
     extend Forwardable
