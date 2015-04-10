@@ -28,7 +28,7 @@ module Sanatio
   end
 
   def self.included(other)
-    other.include(InstanceMethods)
-    other.extend(ClassMethods)
+    other.send(:include, InstanceMethods)
+    other.send(:extend, ClassMethods)
   end
 end
