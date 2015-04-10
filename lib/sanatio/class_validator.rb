@@ -1,15 +1,17 @@
-class Sanatio::ClassValidator
-  attr_accessor :reason
+module Sanatio
+  class ClassValidator
+    attr_accessor :reason
 
-  def initialize
-  end
+    def initialize
+    end
 
-  def is(&validation_block)
-    @validation_block = validation_block
-    self
-  end
+    def is(&validation_block)
+      @validation_block = validation_block
+      self
+    end
 
-  def valid?(object)
-    object.instance_eval(&@validation_block)
+    def valid?(object)
+      object.instance_eval(&@validation_block)
+    end
   end
 end

@@ -5,7 +5,7 @@ require "sanatio/validator_factory"
 module Sanatio
   module ClassMethods
     def ensure_that(target)
-      Sanatio::ValidatorFactory.create(target).tap do |validator|
+      ValidatorFactory.create(target).tap do |validator|
         validators << validator
       end
     end
