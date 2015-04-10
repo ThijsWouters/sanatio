@@ -1,12 +1,11 @@
 require 'sanatio/usage_error'
+require 'sanatio/skippable'
 
 module Sanatio
   class ClassValidator
-    attr_accessor :reason
+    include Skippable
 
-    def initialize
-      @skip_test = Proc.new { false }
-    end
+    attr_accessor :reason
 
     def is(&validation_block)
       unless block_given?
@@ -17,17 +16,13 @@ module Sanatio
       self
     end
 
-    def skip_if(&skip_test)
-      @skip_test = skip_test
-      self
-    end
-
-    def skip?(object)
-      object.instance_eval(&@skip_test)
-    end
-
     def valid?(object)
-      object.instance_eval(&@validation_block)
+      evaluate(object, @validation_block)
+    end
+
+    private
+    def evaluate(object, block)
+      object.instance_eval(&block)
     end
   end
 end

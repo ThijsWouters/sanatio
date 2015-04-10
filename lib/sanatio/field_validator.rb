@@ -1,13 +1,15 @@
 require 'sanatio/usage_error'
+require 'sanatio/skippable'
 
 module Sanatio
   class FieldValidator
+    include Skippable
+
     attr_reader :field
     attr_accessor :reason
 
     def initialize(field)
       @field = field
-      @skip_test = Proc.new { false }
     end
 
     def is(&validation_block)
@@ -19,17 +21,13 @@ module Sanatio
       self
     end
 
-    def skip_if(&skip_test)
-      @skip_test = skip_test
-      self
-    end
-
-    def skip?(object)
-      object.send(@field).instance_eval &@skip_test
-    end
-
     def valid?(object)
-      object.send(@field).instance_eval &@validation_block
+      evaluate(object, @validation_block)
+    end
+
+    private
+    def evaluate(object, test)
+      object.send(@field).instance_eval &test
     end
   end
 end
