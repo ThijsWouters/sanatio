@@ -2,12 +2,6 @@ require 'sanatio/usage_error'
 
 module Sanatio
   module Skippable
-    class BlockMissing < UsageError
-      def initialize
-
-      end
-    end
-
     def skip_if(&skip_test)
       raise UsageError.new("You need to give a block to #skip_if.") unless block_given?
       @skip_test = skip_test
