@@ -1,7 +1,7 @@
 module Sanatio
   class UsageError < StandardError
-    def initialize
-      super("You need to give a block to #is.")
+    def initialize(message = "You need to give a block to #is.")
+      super(message)
     end
   end
 end
