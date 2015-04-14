@@ -93,6 +93,30 @@ Person.new(nil).valid? # true
 Person.new("").valid? # false
 ```
 
+### Built-in validations
+
+#### Present
+
+This validation fails when the value is not present. Or empty when appropriate.
+
+```ruby
+class Person
+  include Sanatio
+
+  def initialize(name)
+    @name = name
+  end
+
+  attr_reader :name
+
+  ensure_that(:name).is Present
+end
+
+Person.new(nil).valid? #false
+Person.new("").valid? #false
+Person.new("Test Testington").valid? #true
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `bin/console` for an interactive prompt that will allow you to experiment.
