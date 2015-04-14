@@ -2,6 +2,7 @@ require "sanatio/version"
 require "sanatio/error"
 require "sanatio/class_validator"
 require "sanatio/field_validator"
+require "sanatio/built-in"
 
 module Sanatio
   module ClassMethods
@@ -42,5 +43,7 @@ module Sanatio
   def self.included(other)
     other.send(:include, InstanceMethods)
     other.send(:extend, ClassMethods)
+
+    other.send(:include, Sanatio::BuiltIn)
   end
 end

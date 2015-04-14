@@ -5,7 +5,7 @@ module Sanatio
   module ValidatorFactory
     def is(validator = nil, &validation_block)
       if validator
-        @validator = validator
+        @validator = validator.new
       else
         raise UsageError.new("You need to give a block to #is.") unless block_given?
         @validator = BlockValidator.new(validation_block)
