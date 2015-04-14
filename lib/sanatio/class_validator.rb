@@ -1,17 +1,19 @@
-require 'sanatio/usage_error'
-require 'sanatio/skippable'
-require 'sanatio/block_validator'
+require 'sanatio/validator_factory'
 
 module Sanatio
   class ClassValidator
-    include Skippable
-    include BlockValidator
+    include ValidatorFactory
 
-    attr_accessor :reason
+    def reason
+      @validator.reason
+    end
 
-    private
-    def evaluate(object, block)
-      object.instance_eval(&block)
+    def valid?(object)
+      @validator.valid?(object)
+    end
+
+    def skip?(object)
+      @validator.skip?(object)
     end
   end
 end

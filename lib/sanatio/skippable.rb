@@ -13,7 +13,7 @@ module Sanatio
     end
 
     def skip?(object)
-      evaluate(object, skip_test)
+      object.instance_eval(&skip_test)
     end
   end
 end

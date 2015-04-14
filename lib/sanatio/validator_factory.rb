@@ -1,13 +1,14 @@
-require "sanatio/field_validator"
-require "sanatio/class_validator"
+require 'sanatio/block_validator'
+require 'sanatio/usage_error'
 
 module Sanatio
   module ValidatorFactory
-    def self.create(target)
-      if target.instance_of? Class
-        ClassValidator.new
+    def is(validator = nil, &validation_block)
+      if validator
+        @validator = validator
       else
-        FieldValidator.new(target)
+        raise UsageError.new("You need to give a block to #is.") unless block_given?
+        @validator = BlockValidator.new(validation_block)
       end
     end
   end

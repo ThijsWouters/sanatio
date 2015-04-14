@@ -1,13 +1,18 @@
+require 'sanatio/skippable'
+
 module Sanatio
-  module BlockValidator
-    def is(&validation_block)
-      raise UsageError.new("You need to give a block to #is.") unless block_given?
+  class BlockValidator
+    include Skippable
+
+    attr_accessor :reason
+
+    def initialize(validation_block)
       @validation_block = validation_block
-      self
     end
 
     def valid?(object)
-      evaluate(object, @validation_block)
+      object.instance_eval(&@validation_block)
     end
   end
 end
+
