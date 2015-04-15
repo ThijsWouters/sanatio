@@ -1,7 +1,7 @@
 require 'forwardable'
 
 module Sanatio
-  class Error
+  class FieldError
     extend Forwardable
 
     def_delegators :@validation, :field, :reason

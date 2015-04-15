@@ -1,5 +1,5 @@
 require "sanatio/version"
-require "sanatio/error"
+require "sanatio/field_error"
 require "sanatio/class_validator"
 require "sanatio/field_validator"
 require "sanatio/built-in"
@@ -36,7 +36,7 @@ module Sanatio
         validator.skip?(self)
       end.reject do |validator|
         validator.valid?(self)
-      end.map(&Error.method(:new))
+      end.map(&:error)
     end
   end
 

@@ -1,6 +1,6 @@
 require 'minitest_helper'
 
-class TestTestClassLevelValidation < Minitest::Test
+class TestClassLevelValidation < Minitest::Test
   def person_class
     Class.new do
       include Sanatio
@@ -23,6 +23,7 @@ class TestTestClassLevelValidation < Minitest::Test
     assert_equal(1, person.errors.length, "I expected one error")
 
     error = person.errors.first
+    refute_respond_to(error, :field, "I do not expect the error having a field method")
     assert_equal(:name_not_nil, error.reason, "The reason should be :name_not_nil")
   end
 

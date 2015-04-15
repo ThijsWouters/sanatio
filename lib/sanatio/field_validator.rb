@@ -1,4 +1,5 @@
 require 'sanatio/validator_factory'
+require 'sanatio/field_error'
 
 module Sanatio
   class FieldValidator
@@ -20,6 +21,10 @@ module Sanatio
 
     def skip?(object)
       @validator.skip?(object.send(@field))
+    end
+
+    def error
+      FieldError.new(self)
     end
   end
 end
