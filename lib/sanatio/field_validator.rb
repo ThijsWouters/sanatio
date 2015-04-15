@@ -1,18 +1,13 @@
 require 'sanatio/validator_factory'
-require 'sanatio/field_error'
 
 module Sanatio
   class FieldValidator
     include ValidatorFactory
 
-    attr_reader :field
+    Error = Struct.new(:field, :reason)
 
     def initialize(field)
       @field = field
-    end
-
-    def reason
-      @validator.reason
     end
 
     def valid?(object)
@@ -24,7 +19,7 @@ module Sanatio
     end
 
     def error
-      FieldError.new(self)
+      Error.new(@field, @validator.reason)
     end
   end
 end

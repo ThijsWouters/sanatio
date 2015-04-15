@@ -1,5 +1,4 @@
 require "sanatio/version"
-require "sanatio/field_error"
 require "sanatio/class_validator"
 require "sanatio/field_validator"
 require "sanatio/built-in"
