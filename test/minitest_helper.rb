@@ -8,10 +8,10 @@ def assert_valid(object)
   assert_empty(object.errors, 'I did not expect any errors')
 end
 
-def refute_valid(object, field, reason)
+def refute_valid(object, options = {})
   refute(object.valid?, 'I expected object to be invalid')
   refute_empty(object.errors, 'I expected an error')
   error = object.errors.first
-  assert_equal(field, error.field, "I expected the field #{field}")
-  assert_equal(reason, error.reason, "I expected the reason #{reason}")
+  assert_equal(options[:field], error.field, "I expected the field #{options[:field]}")
+  assert_equal(options[:reason], error.reason, "I expected the reason #{options[:reason]}")
 end
