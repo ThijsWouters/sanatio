@@ -19,7 +19,16 @@ module Sanatio
     end
 
     def error
-      Error.new(@field, @validator.reason, [])
+      Error.new(@field, @validator.reason, params)
+    end
+
+    private
+    def params
+      if @validator.respond_to?(:params)
+        @validator.params
+      else
+        []
+      end
     end
   end
 end
