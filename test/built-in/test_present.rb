@@ -1,8 +1,6 @@
 require 'minitest_helper'
 
 class TestPresent < Minitest::Test
-  include Sanatio::BuiltIn
-
   def person_class
     Class.new do
       include Sanatio

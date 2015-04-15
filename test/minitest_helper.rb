@@ -3,6 +3,8 @@ require 'sanatio'
 require 'minitest'
 require 'minitest/autorun'
 
+include Sanatio::BuiltIn
+
 def assert_valid(object)
   assert(object.valid?, 'I expected object to be valid')
   assert_empty(object.errors, 'I did not expect any errors')
