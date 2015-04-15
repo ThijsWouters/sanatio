@@ -16,22 +16,10 @@ class TestClassLevelValidation < Minitest::Test
   end
 
   def test_validation_fails
-    person = person_class.new(nil)
-
-    refute(person.valid?, "The person should not be valid")
-
-    assert_equal(1, person.errors.length, "I expected one error")
-
-    error = person.errors.first
-    refute_respond_to(error, :field, "I do not expect the error having a field method")
-    assert_equal(:name_not_nil, error.reason, "The reason should be :name_not_nil")
+    refute_valid(person_class.new(nil), reason: :name_not_nil)
   end
 
   def test_validation_passes
-    person = person_class.new("Test Testington")
-
-    assert(person.valid?, "The person should be valid")
-
-    assert_empty(person.errors, "I expected no errors")
+    assert_valid(person_class.new("Test Testington"))
   end
 end

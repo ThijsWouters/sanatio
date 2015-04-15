@@ -16,10 +16,10 @@ class TestSkipClassLevelValidation < Minitest::Test
   end
 
   def test_the_validation_is_not_skipped
-    refute(person_class.new("").valid?)
+    refute_valid(person_class.new(""))
   end
 
   def test_the_validation_is_skipped
-    assert(person_class.new(nil).valid?)
+    assert_valid(person_class.new(nil))
   end
 end
