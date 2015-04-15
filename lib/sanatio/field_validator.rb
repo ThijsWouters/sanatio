@@ -4,7 +4,7 @@ module Sanatio
   class FieldValidator
     include ValidatorFactory
 
-    Error = Struct.new(:field, :reason)
+    Error = Struct.new(:field, :reason, :params)
 
     def initialize(field)
       @field = field
@@ -19,7 +19,7 @@ module Sanatio
     end
 
     def error
-      Error.new(@field, @validator.reason)
+      Error.new(@field, @validator.reason, [])
     end
   end
 end

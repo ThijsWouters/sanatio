@@ -4,7 +4,7 @@ module Sanatio
   class ClassValidator
     include ValidatorFactory
 
-    Error = Struct.new(:reason)
+    Error = Struct.new(:reason, :params)
 
     def valid?(object)
       @validator.valid?(object)
@@ -15,7 +15,7 @@ module Sanatio
     end
 
     def error
-      Error.new(@validator.reason)
+      Error.new(@validator.reason, [])
     end
   end
 end

@@ -11,6 +11,8 @@ def assert_valid(object)
 end
 
 def refute_valid(object, options = {})
+  options[:params] ||= []
+
   refute(object.valid?, 'I expected object to be invalid')
   refute_empty(object.errors, 'I expected an error')
   error = object.errors.first
@@ -20,4 +22,5 @@ def refute_valid(object, options = {})
     refute_respond_to(error, :field, "I do not expect the error having a field method")
   end
   assert_equal(options[:reason], error.reason, "I expected the reason #{options[:reason]}")
+  assert_equal(options[:params], error.params, "I expected the params #{options[:params]}")
 end
