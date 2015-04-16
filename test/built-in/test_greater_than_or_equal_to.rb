@@ -27,10 +27,6 @@ class TestGreaterThanOrEqualTo < Minitest::Test
     assert_valid(person_class.new(19))
   end
 
-  def test_passes_when_value_is_nil
-    assert_valid(person_class.new(nil))
-  end
-
   def test_passes_when_value_does_not_respond_to_greater_than_or_equal_to
     assert_valid(person_class.new(Object.new))
   end
