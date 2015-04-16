@@ -139,6 +139,28 @@ Person.new(15).valid? #false
 Person.new(18).valid? #true
 ```
 
+#### GreaterThan
+
+This validation fails when the value is smaller than or equal a given value.
+
+```ruby
+class Person
+  include Sanatio
+
+  def initialize(age)
+    @age = age
+  end
+
+  attr_reader :age
+
+  ensure_that(:age).is GreaterThan, 18
+endO
+
+Person.new(nil).valid? #true, validation is skipped
+Person.new(15).valid? #false
+Person.new(19).valid? #true
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `bin/console` for an interactive prompt that will allow you to experiment.
