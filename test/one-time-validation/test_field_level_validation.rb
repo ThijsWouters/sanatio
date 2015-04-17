@@ -16,7 +16,7 @@ class TestFieldLevelValidation < Minitest::Test
   end
 
   def test_failing_validation
-    refute_valid(person_class.new(nil), field: :name, reason: :not_nil)
+    refute_valid(person_class.new(nil), :field => :name, :reason => :not_nil)
   end
 
   def test_succeeding_validation

@@ -16,7 +16,7 @@ class TestSkipFieldLevelValidation < Minitest::Test
   end
 
   def test_the_validation_is_not_skipped
-    refute_valid(person_class.new(""), field: :name)
+    refute_valid(person_class.new(""), :field => :name)
   end
 
   def test_the_validation_is_skipped

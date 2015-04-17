@@ -16,7 +16,7 @@ class TestClassLevelValidation < Minitest::Test
   end
 
   def test_validation_fails
-    refute_valid(person_class.new(nil), reason: :name_not_nil)
+    refute_valid(person_class.new(nil), :reason => :name_not_nil)
   end
 
   def test_validation_passes

@@ -16,11 +16,11 @@ class TestPresent < Minitest::Test
   end
 
   def test_fails_when_value_is_nil
-    refute_valid(person_class.new(nil), field: :name, reason: :not_present)
+    refute_valid(person_class.new(nil), :field => :name, :reason => :not_present)
   end
 
   def test_fails_when_value_is_empty
-    refute_valid(person_class.new(''), field: :name, reason: :not_present)
+    refute_valid(person_class.new(''), :field => :name, :reason => :not_present)
   end
 
   def test_succeeds_when_value_is_filled_in

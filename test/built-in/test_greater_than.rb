@@ -16,11 +16,11 @@ class TestGreaterThan < Minitest::Test
   end
 
   def test_fails_when_less_than_value
-    refute_valid(person_class.new(17), field: :age, reason: :less_than_or_equal_to, params: [18])
+    refute_valid(person_class.new(17), :field => :age, :reason => :less_than_or_equal_to, :params => [18])
   end
 
   def test_fails_when_equal_to_value
-    refute_valid(person_class.new(18), field: :age, reason: :less_than_or_equal_to, params: [18])
+    refute_valid(person_class.new(18), :field => :age, :reason => :less_than_or_equal_to, :params => [18])
   end
 
   def test_passes_when_greater_than_value
