@@ -1,6 +1,7 @@
 # Sanatio
 
 ![Build status](https://travis-ci.org/ThijsWouters/sanatio.svg)
+[![Gem Version](https://badge.fury.io/rb/sanatio.svg)](http://badge.fury.io/rb/sanatio)
 
 Sanatio is a gem that does validation. It has no external dependencies.
 
