@@ -207,6 +207,29 @@ Person.new(15).valid? #true
 Person.new(19).valid? #false
 ```
 
+#### OneOf
+
+This validation fails when the value is not in the list given.
+
+```ruby
+class Person
+  include Sanatio
+
+  def initialize(name)
+    @name = name
+  end
+
+  attr_reader :name
+
+  ensure_that(:name).is OneOf, 'Santa', 'Easter Bunny'
+end
+
+Person.new(nil).valid? #false
+Person.new("Test Testington").valid? #false
+Person.new("Easter Bunny").valid? #true
+Person.new("Santa").valid? #true
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `bin/console` for an interactive prompt that will allow you to experiment.
