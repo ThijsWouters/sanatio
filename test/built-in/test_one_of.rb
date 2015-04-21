@@ -27,4 +27,20 @@ class TestOneOf < Minitest::Test
   def test_fails_when_nil
     refute_valid(person_class.new(nil), :field => :name, :reason => :not_one_of, :params => ['Santa', 'Easter Bunny'])
   end
+
+  def test_can_be_skipped
+    skipping_person = Class.new do
+      include Sanatio
+
+      def initialize(name)
+        @name = name
+      end
+
+      attr_reader :name
+
+      ensure_that(:name).is(OneOf, 'Santa', 'Easter Bunny').skip_if { nil? }
+    end
+
+    assert_valid(skipping_person.new(nil))
+  end
 end

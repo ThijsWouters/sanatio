@@ -1,11 +1,12 @@
+require 'sanatio/skippable'
+
 module Sanatio
   module BuiltIn
     class OneOf
+      include Skippable
+
       def initialize(*values)
         @values = values
-      end
-
-      def skip?(object)
       end
 
       def valid?(object)
