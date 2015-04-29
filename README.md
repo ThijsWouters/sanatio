@@ -230,6 +230,40 @@ Person.new("Easter Bunny").valid? #true
 Person.new("Santa").valid? #true
 ```
 
+#### Valid
+
+This validation fails when the value is not valid.
+
+```ruby
+class Address
+  include Sanatio
+
+  def initialize(street)
+    @street = street
+  end
+
+  attr_reader :street
+
+  ensure_that(:street).is Present
+end
+
+class Person
+  include Sanatio
+
+  def initialize(address)
+    @address = address
+  end
+
+  attr_reader :address
+
+  ensure_that(:address).is Valid
+end
+
+Person.new(Address.new('Alleystreet')).valid? #true
+Person.new(Address.new(nil)).valid? #false
+Person.new(Address.new(nil)).errors #[Error.new(:field => :address, :reason => :invalid)]
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `bin/console` for an interactive prompt that will allow you to experiment.
