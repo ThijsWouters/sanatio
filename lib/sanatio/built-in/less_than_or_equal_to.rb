@@ -1,24 +1,14 @@
+require 'sanatio/built-in/support/compare'
+
 module Sanatio
   module BuiltIn
-    class LessThanOrEqualTo
+    class LessThanOrEqualTo < Compare
       def initialize(value)
-        @value = value
-      end
-
-      def skip?(object)
-        !object.respond_to?(:<=)
-      end
-
-      def valid?(object)
-        object <= @value
+        super(value, :<=)
       end
 
       def reason
         :greater_than
-      end
-
-      def params
-        [@value]
       end
     end
   end
