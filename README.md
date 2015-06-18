@@ -264,6 +264,29 @@ Person.new(Address.new(nil)).valid? #false
 Person.new(Address.new(nil)).errors #[Error.new(:field => :address, :reason => :invalid)]
 ```
 
+#### Matching
+
+This validation fails when the value does not match the provided regex.
+
+```ruby
+class Person
+  include Sanatio
+
+  def initialize(name)
+    @name = name
+  end
+
+  attr_reader :name
+
+  ensure_that(:name).is Matching, /Test/
+end
+
+Person.new(nil).valid? #false
+Person.new("Test Testington").valid? #true
+Person.new("DoesNotMatch").valid? #false
+Person.new("DoesNotMatch").errors #[Error.new(:field => :name, :reason => :no_match)]
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `bin/console` for an interactive prompt that will allow you to experiment.
