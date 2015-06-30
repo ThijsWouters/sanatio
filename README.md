@@ -207,9 +207,31 @@ Person.new(15).valid? #true
 Person.new(19).valid? #false
 ```
 
-#### NotEqualTo
+#### EqualTo
 
 This validation fails when the field is not equal to the given value.
+
+```ruby
+class Person
+  include Sanatio
+
+  def initialize(age)
+    @age = age
+  end
+
+  attr_reader :age
+
+  ensure_that(:age).is EqualTo, 18
+endO
+
+Person.new(nil).valid? #false
+Person.new(15).valid? #false
+Person.new(18).valid? #true
+```
+
+#### NotEqualTo
+
+This validation fails when the field is equal to the given value.
 
 ```ruby
 class Person
@@ -224,7 +246,7 @@ class Person
   ensure_that(:age).is NotEqualTo, 18
 endO
 
-Person.new(nil).valid? #true, validation is skipped
+Person.new(nil).valid? #true
 Person.new(15).valid? #true
 Person.new(18).valid? #false
 ```
