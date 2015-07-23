@@ -331,6 +331,36 @@ Person.new("DoesNotMatch").valid? #false
 Person.new("DoesNotMatch").errors #[Error.new(:field => :name, :reason => :no_match)]
 ```
 
+#### Either
+
+This validation only passes when only one of the two fields matches the given
+validator.
+
+```ruby
+class Person
+  include Sanatio
+
+  def initialize(first_name, last_name)
+    @first_name = first_name
+    @last_name = last_name
+  end
+
+  attr_reader :first_name, :last_name
+
+  ensure_that(self).is Either, :first_name, :last_name, Present
+end
+
+Person.new('Test', 'Testington').valid? #false
+Person.new('Test', nil).valid? #true
+Person.new('', 'Testington).valid? #true
+Person.new(nil, '').valid? #false
+Person.new(nil, nil).errors #[Error.new(:reason => :neither, :params =>
+                            #  [:first_name, :last_name])]
+Person.new('Test', 'Testington').errors #[Error.new(:reason => :both,
+                                        # :params =>
+                                        #   [:first_name, :last_name])]
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `bin/console` for an interactive prompt that will allow you to experiment.
