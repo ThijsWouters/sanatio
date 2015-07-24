@@ -1,5 +1,4 @@
 require 'minitest_helper'
-require 'sanatio/built-in/either'
 
 class TestEither < Minitest::Test
   def person_class
