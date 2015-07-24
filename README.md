@@ -336,6 +336,9 @@ Person.new("DoesNotMatch").errors #[Error.new(:field => :name, :reason => :no_ma
 This validation only passes when only one of the two fields matches the given
 validator.
 
+The validation is skipped if either field contains a value that would be
+skipped.
+
 ```ruby
 class Person
   include Sanatio
