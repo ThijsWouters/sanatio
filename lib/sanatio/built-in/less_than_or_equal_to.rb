@@ -7,7 +7,7 @@ module Sanatio
         super(value, :<=)
       end
 
-      def reason
+      def reason(_)
         :greater_than
       end
     end

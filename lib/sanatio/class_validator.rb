@@ -14,8 +14,8 @@ module Sanatio
       @validator.skip?(object)
     end
 
-    def error
-      Error.new(@validator.reason, params)
+    def error(object)
+      Error.new(@validator.reason(object), params)
     end
 
     private

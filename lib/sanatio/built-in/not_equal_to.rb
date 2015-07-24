@@ -10,7 +10,7 @@ class NotEqualTo
     object != @value
   end
 
-  def reason
+  def reason(_)
     :equal_to
   end
 

@@ -13,7 +13,7 @@ module Sanatio
         @regex.match(value)
       end
 
-      def reason
+      def reason(_)
         :no_match
       end
 

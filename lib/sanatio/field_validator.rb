@@ -18,8 +18,8 @@ module Sanatio
       @validator.skip?(object.send(@field))
     end
 
-    def error
-      Error.new(@field, @validator.reason, params)
+    def error(object)
+      Error.new(@field, @validator.reason(object.send(@field)), params)
     end
 
     private

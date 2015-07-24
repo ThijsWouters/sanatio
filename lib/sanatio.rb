@@ -35,7 +35,9 @@ module Sanatio
         validator.skip?(self)
       end.reject do |validator|
         validator.valid?(self)
-      end.map(&:error)
+      end.map do |validator|
+        validator.error(self)
+      end
     end
   end
 

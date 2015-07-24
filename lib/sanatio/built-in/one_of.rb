@@ -13,7 +13,7 @@ module Sanatio
         @values.include?(object)
       end
 
-      def reason
+      def reason(_)
         :not_one_of
       end
 

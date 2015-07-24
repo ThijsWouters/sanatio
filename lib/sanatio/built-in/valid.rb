@@ -9,7 +9,7 @@ module Sanatio
         object.valid?
       end
 
-      def reason
+      def reason(_)
         :invalid
       end
     end

@@ -8,7 +8,7 @@ module Sanatio
         !object.nil? && (!object.respond_to?(:empty?) || !object.empty?)
       end
 
-      def reason
+      def reason(_)
         :not_present
       end
     end
