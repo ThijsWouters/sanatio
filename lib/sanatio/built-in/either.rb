@@ -6,6 +6,7 @@ class Either
   end
 
   def skip?(value)
+    @validator.skip?(first_value(value)) || @validator.skip?(second_value(value))
   end
 
   def valid?(value)
