@@ -30,4 +30,8 @@ class TestGreaterThan < Minitest::Test
   def test_passes_when_not_responding_to_greater_than
     assert_valid(person_class.new(Object.new))
   end
+
+  def test_passes_when_cannot_be_compared
+    assert_valid(person_class.new("15"))
+  end
 end

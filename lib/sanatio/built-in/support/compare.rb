@@ -11,7 +11,12 @@ module Sanatio
       end
 
       def skip?(object)
-        !object.respond_to?(@method)
+        return true unless object.respond_to?(@method)
+
+        object.send(@method, @value)
+        false
+      rescue ArgumentError
+        true
       end
 
       def valid?(object)
